@@ -21,135 +21,88 @@ const Header = () => {
     }
   };
 
+  const navLinks = [
+    { id: 'how-it-works', label: 'How It Works' },
+    { id: 'use-cases', label: 'Use Cases' },
+    { id: 'technology', label: 'Technology' },
+    { id: 'gallery', label: 'Gallery' },
+    { id: 'pricing', label: 'Pricing' }
+  ];
+
   return (
-    <header 
-      className={`dark-header transition-all duration-400 ${
-        isScrolled ? 'bg-black/95 backdrop-blur-md' : 'bg-black'
-      }`}
-      style={{ 
-        borderBottom: '1px solid rgba(255, 255, 255, 0.25)',
+    <header
+      style={{
         position: 'fixed',
         top: 0,
         width: '100%',
         zIndex: 50,
-        boxSizing: 'border-box'
+        background: isScrolled ? 'rgba(0, 0, 0, 0.9)' : 'transparent',
+        backdropFilter: isScrolled ? 'blur(20px)' : 'none',
+        borderBottom: isScrolled ? '1px solid rgba(255, 255, 255, 0.06)' : 'none',
+        transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
       }}
     >
-      <div style={{ 
-        display: 'flex', 
-        alignItems: 'center', 
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
         justifyContent: 'space-between',
-        padding: '16px 7.6923%',
-        maxWidth: '100%',
+        padding: '1rem 7.6923%',
+        maxWidth: '1400px',
         margin: '0 auto',
         height: '80px'
       }}>
         {/* Logo */}
-        <div 
-          onClick={() => scrollToSection('hero')} 
+        <div
+          onClick={() => scrollToSection('hero')}
           style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '12px' }}
         >
           <div style={{
-            fontSize: '24px',
+            fontSize: '1.5rem',
             fontWeight: 700,
-            color: '#00FFD1',
-            letterSpacing: '-0.5px',
-            fontFamily: 'Space Grotesk, Outfit, system-ui',
-            textShadow: '0 0 20px rgba(0, 255, 209, 0.3)'
+            fontFamily: 'var(--font-display)',
+            letterSpacing: '-0.02em'
           }}>
-            HoverAds
+            <span style={{ color: 'var(--gold-400)' }}>Hover</span>
+            <span style={{ color: 'var(--cream-100)' }}>Ads</span>
           </div>
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="dark-nav hidden md:flex" style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
-          <a 
-            onClick={() => scrollToSection('how-it-works')} 
-            className="dark-nav-link" 
-            style={{ 
-              color: '#4D4D4D', 
-              textDecoration: 'none', 
-              fontSize: '18px', 
-              fontWeight: 400,
-              cursor: 'pointer',
-              transition: 'color 0.3s ease'
-            }}
-          >
-            How It Works
-          </a>
-          <a 
-            onClick={() => scrollToSection('use-cases')} 
-            className="dark-nav-link" 
-            style={{ 
-              color: '#4D4D4D', 
-              textDecoration: 'none', 
-              fontSize: '18px', 
-              fontWeight: 400,
-              cursor: 'pointer',
-              transition: 'color 0.3s ease'
-            }}
-          >
-            Use Cases
-          </a>
-          <a 
-            onClick={() => scrollToSection('technology')} 
-            className="dark-nav-link" 
-            style={{ 
-              color: '#4D4D4D', 
-              textDecoration: 'none', 
-              fontSize: '18px', 
-              fontWeight: 400,
-              cursor: 'pointer',
-              transition: 'color 0.3s ease'
-            }}
-          >
-            Technology
-          </a>
-          <a 
-            onClick={() => scrollToSection('gallery')} 
-            className="dark-nav-link" 
-            style={{ 
-              color: '#4D4D4D', 
-              textDecoration: 'none', 
-              fontSize: '18px', 
-              fontWeight: 400,
-              cursor: 'pointer',
-              transition: 'color 0.3s ease'
-            }}
-          >
-            Gallery
-          </a>
-          <a 
-            onClick={() => scrollToSection('pricing')} 
-            className="dark-nav-link" 
-            style={{ 
-              color: '#4D4D4D', 
-              textDecoration: 'none', 
-              fontSize: '18px', 
-              fontWeight: 400,
-              cursor: 'pointer',
-              transition: 'color 0.3s ease'
-            }}
-          >
-            Pricing
-          </a>
+        <nav className="hidden md:flex" style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '2rem'
+        }}>
+          {navLinks.map((link) => (
+            <a
+              key={link.id}
+              onClick={() => scrollToSection(link.id)}
+              style={{
+                color: 'rgba(255, 255, 255, 0.6)',
+                textDecoration: 'none',
+                fontSize: '0.875rem',
+                fontFamily: 'var(--font-body)',
+                fontWeight: 500,
+                cursor: 'pointer',
+                transition: 'color 0.3s ease',
+                textTransform: 'uppercase',
+                letterSpacing: '0.05em'
+              }}
+              onMouseEnter={(e) => e.target.style.color = 'var(--gold-400)'}
+              onMouseLeave={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.6)'}
+            >
+              {link.label}
+            </a>
+          ))}
           <button
             onClick={() => scrollToSection('contact')}
             className="btn-primary"
             style={{
-              background: '#00FFD1',
-              color: '#000000',
-              border: 'none',
-              borderRadius: '0px',
-              padding: '12px 24px',
-              fontSize: '18px',
-              fontWeight: 500,
-              cursor: 'pointer',
-              transition: 'all 0.4s ease-in-out',
-              minHeight: '48px'
+              padding: '0.75rem 1.5rem',
+              fontSize: '0.8rem'
             }}
           >
-            Contact Us
+            <span style={{ position: 'relative', zIndex: 1 }}>Contact Us</span>
           </button>
         </nav>
 
@@ -160,7 +113,7 @@ const Header = () => {
           style={{
             background: 'none',
             border: 'none',
-            color: '#FFFFFF',
+            color: 'var(--cream-100)',
             cursor: 'pointer',
             padding: '8px'
           }}
@@ -171,87 +124,41 @@ const Header = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div 
+        <div
           className="md:hidden"
           style={{
-            background: '#000000',
-            borderTop: '1px solid rgba(255, 255, 255, 0.25)',
-            padding: '20px 7.6923%'
+            background: 'rgba(0, 0, 0, 0.95)',
+            backdropFilter: 'blur(20px)',
+            borderTop: '1px solid rgba(255, 255, 255, 0.06)',
+            padding: '1.5rem 7.6923%'
           }}
         >
-          <nav style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-            <a 
-              onClick={() => scrollToSection('how-it-works')} 
-              style={{ 
-                color: '#FFFFFF', 
-                textDecoration: 'none', 
-                fontSize: '18px',
-                cursor: 'pointer'
-              }}
-            >
-              How It Works
-            </a>
-            <a 
-              onClick={() => scrollToSection('use-cases')} 
-              style={{ 
-                color: '#FFFFFF', 
-                textDecoration: 'none', 
-                fontSize: '18px',
-                cursor: 'pointer'
-              }}
-            >
-              Use Cases
-            </a>
-            <a 
-              onClick={() => scrollToSection('technology')} 
-              style={{ 
-                color: '#FFFFFF', 
-                textDecoration: 'none', 
-                fontSize: '18px',
-                cursor: 'pointer'
-              }}
-            >
-              Technology
-            </a>
-            <a 
-              onClick={() => scrollToSection('gallery')} 
-              style={{ 
-                color: '#FFFFFF', 
-                textDecoration: 'none', 
-                fontSize: '18px',
-                cursor: 'pointer'
-              }}
-            >
-              Gallery
-            </a>
-            <a 
-              onClick={() => scrollToSection('pricing')} 
-              style={{ 
-                color: '#FFFFFF', 
-                textDecoration: 'none', 
-                fontSize: '18px',
-                cursor: 'pointer'
-              }}
-            >
-              Pricing
-            </a>
+          <nav style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            {navLinks.map((link) => (
+              <a
+                key={link.id}
+                onClick={() => scrollToSection(link.id)}
+                style={{
+                  color: 'rgba(255, 255, 255, 0.8)',
+                  textDecoration: 'none',
+                  fontSize: '1rem',
+                  fontFamily: 'var(--font-body)',
+                  cursor: 'pointer',
+                  padding: '0.5rem 0'
+                }}
+              >
+                {link.label}
+              </a>
+            ))}
             <button
               onClick={() => scrollToSection('contact')}
               className="btn-primary"
               style={{
-                background: '#00FFD1',
-                color: '#000000',
-                border: 'none',
-                borderRadius: '0px',
-                padding: '14px 24px',
-                fontSize: '18px',
-                fontWeight: 500,
-                cursor: 'pointer',
                 width: '100%',
-                minHeight: '56px'
+                marginTop: '0.5rem'
               }}
             >
-              Contact Us
+              <span style={{ position: 'relative', zIndex: 1 }}>Contact Us</span>
             </button>
           </nav>
         </div>

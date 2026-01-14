@@ -13,84 +13,74 @@ const iconMap = {
 
 const WhyChooseUs = () => {
   return (
-    <section 
+    <section
+      className="bg-mesh bg-noise"
       style={{
-        background: '#000000',
-        padding: '100px 7.6923%'
+        position: 'relative',
+        overflow: 'hidden'
       }}
     >
-      <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
-        <h2 
-          className="display-large"
-          style={{
-            fontSize: '48px',
-            fontWeight: 600,
-            lineHeight: 1.1,
-            color: '#FFFFFF',
-            textAlign: 'center',
-            marginBottom: '20px'
-          }}
-        >
-          Why HoverAds?
-        </h2>
-        <p style={{
-          fontSize: '20px',
-          color: 'rgba(255, 255, 255, 0.85)',
-          textAlign: 'center',
-          marginBottom: '60px',
-          maxWidth: '700px',
-          margin: '0 auto 60px'
-        }}>
-          The future of advertising is here. See why brands choose HoverAds.
-        </p>
+      <div className="container-max section-padding">
+        {/* Section Header */}
+        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+          <span className="badge-accent" style={{ marginBottom: '1.5rem', display: 'inline-flex' }}>
+            Our Advantage
+          </span>
+          <h2 className="display-large" style={{ color: 'var(--cream-100)', marginBottom: '1rem' }}>
+            Why <span className="text-gradient">HoverAds</span>?
+          </h2>
+          <p className="text-lead" style={{ maxWidth: '600px', margin: '0 auto' }}>
+            The future of advertising is here. See why brands choose HoverAds.
+          </p>
+        </div>
 
+        {/* Features Grid */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: '30px'
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gap: '1.5rem'
         }}>
-          {whyChooseUsData.map((item) => {
+          {whyChooseUsData.map((item, index) => {
             const IconComponent = iconMap[item.icon];
             return (
-              <div 
+              <div
                 key={item.id}
+                className="glass-card"
                 style={{
-                  background: '#121212',
-                  border: '1px solid rgba(255, 255, 255, 0.25)',
-                  padding: '40px',
-                  transition: 'all 0.4s ease-in-out'
+                  padding: '2rem',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '1rem'
                 }}
-                className="hover-card"
               >
                 {/* Icon */}
                 <div style={{
-                  width: '56px',
-                  height: '56px',
-                  background: 'rgba(0, 255, 209, 0.1)',
+                  width: '48px',
+                  height: '48px',
+                  background: 'linear-gradient(135deg, rgba(245, 166, 35, 0.15), rgba(107, 70, 193, 0.1))',
+                  border: '1px solid rgba(245, 166, 35, 0.2)',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  marginBottom: '20px',
-                  borderRadius: '0px'
+                  justifyContent: 'center'
                 }}>
-                  {IconComponent && <IconComponent size={28} color="#00FFD1" />}
+                  {IconComponent && <IconComponent size={24} color="var(--gold-400)" />}
                 </div>
 
                 {/* Title */}
                 <h3 style={{
-                  fontSize: '20px',
+                  fontFamily: 'var(--font-display)',
+                  fontSize: '1.25rem',
                   fontWeight: 600,
-                  color: '#FFFFFF',
-                  marginBottom: '12px'
+                  color: 'var(--cream-100)'
                 }}>
                   {item.title}
                 </h3>
 
                 {/* Description */}
                 <p style={{
-                  fontSize: '18px',
-                  color: 'rgba(255, 255, 255, 0.85)',
-                  lineHeight: 1.5
+                  fontSize: '0.95rem',
+                  color: 'rgba(255, 255, 255, 0.6)',
+                  lineHeight: 1.7
                 }}>
                   {item.description}
                 </p>

@@ -4,91 +4,115 @@ import { howItWorksData } from '../mock';
 
 const HowItWorks = () => {
   return (
-    <section 
+    <section
       id="how-it-works"
+      className="bg-noise"
       style={{
-        background: '#000000',
-        padding: '100px 7.6923%',
-        position: 'relative'
+        background: 'var(--gray-900)',
+        position: 'relative',
+        overflow: 'hidden'
       }}
     >
-      <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
-        <h2 
-          className="display-large"
-          style={{
-            fontSize: '48px',
-            fontWeight: 600,
-            lineHeight: 1.1,
-            color: '#FFFFFF',
-            textAlign: 'center',
-            marginBottom: '60px'
-          }}
-        >
-          How It Works
-        </h2>
+      {/* Subtle gradient accent */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        height: '1px',
+        background: 'linear-gradient(90deg, transparent, var(--gold-400), transparent)'
+      }}></div>
 
+      <div className="container-max section-padding">
+        {/* Section Header */}
+        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+          <span className="badge-accent" style={{ marginBottom: '1.5rem', display: 'inline-flex' }}>
+            Simple Process
+          </span>
+          <h2 className="display-large" style={{ color: 'var(--cream-100)' }}>
+            How It <span className="text-gradient">Works</span>
+          </h2>
+        </div>
+
+        {/* Steps Grid */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: '40px'
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gap: '2rem'
         }}>
           {howItWorksData.map((step, index) => (
-            <div 
+            <div
               key={step.id}
+              className="glass-card"
               style={{
-                background: '#121212',
-                border: '1px solid rgba(255, 255, 255, 0.25)',
-                padding: '40px',
-                position: 'relative',
-                transition: 'all 0.4s ease-in-out'
+                padding: '2.5rem',
+                position: 'relative'
               }}
-              className="hover-card"
             >
               {/* Step Number */}
               <div style={{
-                fontSize: '72px',
-                fontWeight: 600,
-                color: '#00FFD1',
-                opacity: 0.3,
+                fontFamily: 'var(--font-display)',
+                fontSize: '5rem',
+                fontWeight: 700,
+                color: 'var(--gold-400)',
+                opacity: 0.15,
                 lineHeight: 1,
-                marginBottom: '20px'
+                position: 'absolute',
+                top: '1rem',
+                right: '1.5rem'
               }}>
                 {step.step}
               </div>
 
+              {/* Step indicator */}
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.75rem',
+                marginBottom: '1.5rem'
+              }}>
+                <div style={{
+                  width: '32px',
+                  height: '32px',
+                  background: 'linear-gradient(135deg, var(--gold-400), var(--gold-600))',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontFamily: 'var(--font-display)',
+                  fontWeight: 700,
+                  fontSize: '0.875rem',
+                  color: 'var(--black-pure)'
+                }}>
+                  {index + 1}
+                </div>
+                {index < howItWorksData.length - 1 && (
+                  <div style={{
+                    flex: 1,
+                    height: '1px',
+                    background: 'linear-gradient(90deg, var(--gold-400), transparent)'
+                  }}></div>
+                )}
+              </div>
+
               {/* Title */}
               <h3 style={{
-                fontSize: '24px',
+                fontFamily: 'var(--font-display)',
+                fontSize: '1.5rem',
                 fontWeight: 600,
-                color: '#FFFFFF',
-                marginBottom: '16px'
+                color: 'var(--cream-100)',
+                marginBottom: '1rem'
               }}>
                 {step.title}
               </h3>
 
               {/* Description */}
               <p style={{
-                fontSize: '18px',
-                color: 'rgba(255, 255, 255, 0.85)',
-                lineHeight: 1.5,
-                marginBottom: '20px'
+                fontSize: '1rem',
+                color: 'rgba(255, 255, 255, 0.6)',
+                lineHeight: 1.7
               }}>
                 {step.description}
               </p>
-
-              {/* Arrow indicator */}
-              {index < howItWorksData.length - 1 && (
-                <div style={{
-                  position: 'absolute',
-                  right: '-20px',
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  color: '#00FFD1',
-                  display: 'none'
-                }} className="hidden lg:block">
-                  <ArrowRight size={32} />
-                </div>
-              )}
             </div>
           ))}
         </div>
